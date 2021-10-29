@@ -1,13 +1,15 @@
 package com.kptsang.movieproject;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-@SpringBootTest
-class MovieprojectApplicationTests {
+
+public class MovieprojectApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void testGetFilmTitleMethod() {
+		Film testFilm = new Film("The Shining",144,"Jack Nicholson");
+		assertEquals("The title is wrong", "The Shining", "The Shining");
 	}
 
 }

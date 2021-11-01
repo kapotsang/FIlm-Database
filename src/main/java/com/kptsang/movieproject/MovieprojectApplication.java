@@ -3,15 +3,13 @@ package com.kptsang.movieproject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
-
+@RequestMapping ("/all")
 public class MovieprojectApplication {
 
     @Autowired
@@ -21,10 +19,23 @@ public class MovieprojectApplication {
 		SpringApplication.run(MovieprojectApplication.class, args);
 	}
 
-    @GetMapping("/all")
-    public @ResponseBody Iterable<Film> getAllUsers(){
+    @GetMapping("/films")
+    public @ResponseBody Iterable<Film> getAllFilms(){
         return filmRepository.findAll();
     }
+
+    @GetMapping("/search")
+    public @ResponseBody Optional<Film> getSearch(){return filmRepository.findById(12);}
+
+    @PostMapping("/newFilm")
+    public @ResponseBody String addFilm (@RequestParam String title ,@RequestParam int length, @RequestParam int release_year) {
+        Film savedFilm = new Film(title, length, release_year);
+        filmRepository.save(savedFilm);
+        return "Saved";
+    }
+
+    //@GetMapping("/delete")
+
 
 
 /*	@GetMapping("/getFilm")

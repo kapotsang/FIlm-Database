@@ -14,6 +14,8 @@ public class MovieprojectApplication {
 
     @Autowired
     private FilmRepository filmRepository;
+    @Autowired
+    private ActorRepository actorRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MovieprojectApplication.class, args);
@@ -24,8 +26,14 @@ public class MovieprojectApplication {
         return filmRepository.findAll();
     }
 
-    @GetMapping("/search")
+    @GetMapping("/searchID")
     public @ResponseBody Optional<Film> getSearch(){return filmRepository.findById(12);}
+
+    @GetMapping("/actors")
+    public @ResponseBody Iterable<Actor> getAllActors() {return actorRepository.findAll();}
+
+    @GetMapping("/searchActorID")
+        public @ResponseBody Optional<Actor> getSearchActor(){return actorRepository.findById(3);}
 
     @PostMapping("/newFilm")
     public @ResponseBody String addFilm (@RequestParam String title ,@RequestParam int length, @RequestParam int release_year) {

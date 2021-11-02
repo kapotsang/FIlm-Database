@@ -42,7 +42,34 @@ public class MovieprojectApplication {
         return "Saved";
     }
 
+    /*@GetMapping("/deleteEntry")
+    public @ResponseBody Optional<Film> deleteFilm(){return filmRepository.deleteById(12);}
+
+
+   /* @DeleteMapping("remove/id")
+    public String remove@PathVariable String id){
+    filmRepository.deleteById(id){
+        return "Entry deleted";
+        }
+    }
+
+
+   /* @PostMapping("/deleteFilm")
+    public @ResponseBody String deleteFilm (@RequestParam String title, @RequestParam int length, @RequestParam int release_year){
+        Film deletedFilm = new Film(title, length, release_year );
+        filmRepository.delete(deletedFilm);
+        return "Deleted";
+
+    }
+
+    @PostMapping("/newReview")
+    Film film_inDB = filmRepository.findById(film).get();
+    film_inDB.setTitle()*/
+
+
+
     //@GetMapping("/delete")
+    //@GetMapping("/review")
 
 
 

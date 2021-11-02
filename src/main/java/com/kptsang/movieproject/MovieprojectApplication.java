@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @SpringBootApplication
 @RestController
-@RequestMapping ("/all")
+//@RequestMapping ("/all")
 public class MovieprojectApplication {
 
     @Autowired
@@ -36,8 +36,8 @@ public class MovieprojectApplication {
         public @ResponseBody Optional<Actor> getSearchActor(){return actorRepository.findById(3);}
 
     @PostMapping("/newFilm")
-    public @ResponseBody String addFilm (@RequestParam String title ,@RequestParam int length, @RequestParam int release_year) {
-        Film savedFilm = new Film(title, length, release_year);
+    public @ResponseBody String addFilm (@RequestParam String film_title ,@RequestParam int length, @RequestParam int release_year) {
+        Film savedFilm = new Film(film_title, length, release_year);
         filmRepository.save(savedFilm);
         return "Saved";
     }

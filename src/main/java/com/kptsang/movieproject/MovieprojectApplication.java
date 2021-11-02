@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @SpringBootApplication
-@RestController
-//@RequestMapping ("/all")
+@RestController //@RequestMapping ("/all")
 public class MovieprojectApplication {
 
     @Autowired
@@ -21,7 +19,7 @@ public class MovieprojectApplication {
 		SpringApplication.run(MovieprojectApplication.class, args);
 	}
 
-    @GetMapping("/films")
+    @GetMapping("/allFilms")
     public @ResponseBody Iterable<Film> getAllFilms(){
         return filmRepository.findAll();
     }
@@ -29,17 +27,25 @@ public class MovieprojectApplication {
     @GetMapping("/searchID")
     public @ResponseBody Optional<Film> getSearch(){return filmRepository.findById(12);}
 
-    @GetMapping("/actors")
+    @GetMapping("/allActors")
     public @ResponseBody Iterable<Actor> getAllActors() {return actorRepository.findAll();}
 
     @GetMapping("/searchActorID")
         public @ResponseBody Optional<Actor> getSearchActor(){return actorRepository.findById(3);}
 
     @PostMapping("/newFilm")
-    public @ResponseBody String addFilm (@RequestParam String film_title ,@RequestParam int length, @RequestParam int release_year) {
-        Film savedFilm = new Film(film_title, length, release_year);
+    public @ResponseBody String addFilm (@RequestParam int film_id, @RequestParam String title ,@RequestParam int length, @RequestParam int release_year) {
+        Film savedFilm = new Film ( film_id,title, length, release_year);
         filmRepository.save(savedFilm);
-        return "Saved";
+        return "Saved Film";
+    }
+
+    @PostMapping("/newActor")
+    public @ResponseBody String addActor (@RequestParam int actor_id, @RequestParam String first_name, @RequestParam String last_name, @RequestParam String last_update){
+        Actor savedActor = new Actor(actor_id, first_name, last_name, last_update);
+        actorRepository.save(savedActor);
+        return "Saved Actor";
+
     }
 
     /*@GetMapping("/deleteEntry")

@@ -1,7 +1,6 @@
 package com.kptsang.movieproject;
 import javax.persistence.*;
 
-
 @Entity
 @Table (name="film")
 public class Film2 {
@@ -12,7 +11,7 @@ public class Film2 {
   // private String description;
 
 
-    public Film2(int film_id, String title){
+    public Film2( String title){
         this.film_id=film_id;
         this.title=title;
         this.language_id=language_id;
@@ -31,12 +30,11 @@ public class Film2 {
     public String getTitle(){
         return title;
     }
-
-
-   public void setLanguage_id(int language_id){
-        this.language_id=language_id;
-    } /*
+    public void setLanguage_id(int language_id){
+        this.language_id=language_id;}
     public int getLanguage_id(){return language_id;}
+
+     /*
     public void setDescription(String description){this.description = description;}
     public String getDescription(){return description;}*/
 }

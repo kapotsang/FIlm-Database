@@ -33,12 +33,10 @@ public class MovieprojectApplication {
     @GetMapping("/searchActorID")
         public @ResponseBody Optional<Actor> getSearchActor(){return actorRepository.findById(3);}
 
-    @PostMapping("/newFilm")
-    public @ResponseBody String newFilm (  @RequestParam int film_id, @RequestParam String title
-                                           ) {
-        Film2 savedFilm = new Film2 ( film_id, title);
-        filmRepository.save(savedFilm);
-        return "Saved Film";
+    @GetMapping("/searchFilm/{film_id}")
+        public @ResponseBody Film2 findById(@PathVariable("film_id") int film_id){
+        Film2 searchFilm = filmRepository.findById(film_id).orElse(null);
+        return searchFilm;
     }
 
     @PostMapping("/newActor")
@@ -46,39 +44,21 @@ public class MovieprojectApplication {
         Actor savedActor = new Actor(actor_id, first_name, last_name, last_update);
         actorRepository.save(savedActor);
         return "Saved Actor";
-
     }
 
-    /*@GetMapping("/deleteEntry")
-    public @ResponseBody Optional<Film> deleteFilm(){return filmRepository.deleteById(12);}
-
-
-   /* @DeleteMapping("remove/id")
-    public String remove@PathVariable String id){
-    filmRepository.deleteById(id){
-        return "Entry deleted";
-        }
+    @DeleteMapping("/deleteActor{actor_id}")
+    public String deleteActor(@PathVariable ("actor_id")int actor_id){
+         actorRepository.deleteById(actor_id);
+    return "Actor deleted";
     }
 
-
-   /* @PostMapping("/deleteFilm")
-    public @ResponseBody String deleteFilm (@RequestParam String title, @RequestParam int length, @RequestParam int release_year){
-        Film deletedFilm = new Film(title, length, release_year );
-        filmRepository.delete(deletedFilm);
-        return "Deleted";
-
+    @PostMapping("/newFilm")
+    public @ResponseBody String newFilm (  @RequestParam String title)
+    {
+        Film2 savedFilm = new Film2 (title);
+        filmRepository.save(savedFilm);
+        return "Saved Film";
     }
-
-    @PostMapping("/newReview")
-    Film film_inDB = filmRepository.findById(film).get();
-    film_inDB.setTitle()*/
-
-
-
-    //@GetMapping("/delete")
-    //@GetMapping("/review")
-
-
 
 /*	@GetMapping("/getFilm")
 	public String filmResponse(){

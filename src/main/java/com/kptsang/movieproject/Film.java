@@ -1,4 +1,4 @@
-package com.kptsang.movieproject;
+/*package com.kptsang.movieproject;
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +8,7 @@ public class Film {
 
     private int film_id;
     private String title;
- //   private int length;
+ //  private int length;
  //  private int release_year;
     private int language_id;
     private String description;
@@ -34,3 +34,4 @@ public class Film {
 
 
 }
+*/

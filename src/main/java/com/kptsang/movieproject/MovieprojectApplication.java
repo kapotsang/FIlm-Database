@@ -46,6 +46,13 @@ public class MovieprojectApplication {
         return "Saved Film";
     }
 
+    @DeleteMapping("/deleteFilm{film_id}")
+    public String deleteFilm(@PathVariable ("film_id")int film_id){
+        filmRepository.deleteById(film_id);
+        return "Film deleted"
+        ;
+    }
+
     @PostMapping("/newActor")
     public @ResponseBody String newActor (@RequestParam int actor_id, @RequestParam String first_name, @RequestParam String last_name, @RequestParam String last_update){
         Actor savedActor = new Actor(actor_id, first_name, last_name, last_update);

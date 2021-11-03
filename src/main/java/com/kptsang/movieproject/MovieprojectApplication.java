@@ -10,10 +10,11 @@ import java.util.Optional;
 @RestController //@RequestMapping ("/all")
 public class MovieprojectApplication {
 
-    @Autowired
-    private FilmRepository filmRepository;
+
     @Autowired
     private ActorRepository actorRepository;
+    @Autowired
+    private FilmRepository filmRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MovieprojectApplication.class, args);
@@ -38,6 +39,12 @@ public class MovieprojectApplication {
         Film2 searchFilm = filmRepository.findById(film_id).orElse(null);
         return searchFilm;
     }
+    @PostMapping("/newFilm")
+    public @ResponseBody String newFilm ( @RequestParam String title, @RequestParam int language_id) {
+        Film2 savedFilm = new Film2( title, language_id);
+        filmRepository.save(savedFilm);
+        return "Saved Film";
+    }
 
     @PostMapping("/newActor")
     public @ResponseBody String newActor (@RequestParam int actor_id, @RequestParam String first_name, @RequestParam String last_name, @RequestParam String last_update){
@@ -52,17 +59,5 @@ public class MovieprojectApplication {
     return "Actor deleted";
     }
 
-    @PostMapping("/newFilm")
-    public @ResponseBody String newFilm (  @RequestParam String title)
-    {
-        Film2 savedFilm = new Film2 (title);
-        filmRepository.save(savedFilm);
-        return "Saved Film";
-    }
 
-/*	@GetMapping("/getFilm")
-	public String filmResponse(){
-		Film film1 = new Film("The Shining", 144,"Jack Nicholson");
-		return film1.getJsonObjectOfFilm();
-	} */
 }

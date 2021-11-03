@@ -1,12 +1,10 @@
 package com.kptsang.movieproject;
-
 import javax.persistence.*;
 
 @Entity
 @Table (name ="actor")
 public class Actor {
     @Id
-
     private int actor_id;
     private String first_name;
     private String last_name;

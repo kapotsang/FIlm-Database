@@ -20,12 +20,12 @@ public class MovieprojectApplication {
 	}
 
     @GetMapping("/allFilms")
-    public @ResponseBody Iterable<Film> getAllFilms(){
+    public @ResponseBody Iterable<Film2> getAllFilms(){
         return filmRepository.findAll();
     }
 
     @GetMapping("/searchID")
-    public @ResponseBody Optional<Film> getSearch(){return filmRepository.findById(12);}
+    public @ResponseBody Optional<Film2> getSearch(){return filmRepository.findById(12);}
 
     @GetMapping("/allActors")
     public @ResponseBody Iterable<Actor> getAllActors() {return actorRepository.findAll();}
@@ -34,14 +34,15 @@ public class MovieprojectApplication {
         public @ResponseBody Optional<Actor> getSearchActor(){return actorRepository.findById(3);}
 
     @PostMapping("/newFilm")
-    public @ResponseBody String addFilm (@RequestParam int film_id, @RequestParam String title ,@RequestParam int length, @RequestParam int release_year) {
-        Film savedFilm = new Film ( film_id,title, length, release_year);
+    public @ResponseBody String newFilm (  @RequestParam int film_id, @RequestParam String title
+                                           ) {
+        Film2 savedFilm = new Film2 ( film_id, title);
         filmRepository.save(savedFilm);
         return "Saved Film";
     }
 
     @PostMapping("/newActor")
-    public @ResponseBody String addActor (@RequestParam int actor_id, @RequestParam String first_name, @RequestParam String last_name, @RequestParam String last_update){
+    public @ResponseBody String newActor (@RequestParam int actor_id, @RequestParam String first_name, @RequestParam String last_name, @RequestParam String last_update){
         Actor savedActor = new Actor(actor_id, first_name, last_name, last_update);
         actorRepository.save(savedActor);
         return "Saved Actor";

@@ -66,5 +66,11 @@ public class MovieprojectApplication {
     return "Actor deleted";
     }
 
+  /*  @PutMapping("/filmUpdate")
+    public Film2 filmUpdate(@RequestBody Film2 film){
+        filmRepository.save(film);
+        return "Film updated";
+    }
+*/
 
 }

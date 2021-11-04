@@ -25,8 +25,8 @@ public class MovieprojectApplication {
         return filmRepository.findAll();
     }
 
-    @GetMapping("/searchID")
-    public @ResponseBody Optional<Film2> getSearch(){return filmRepository.findById(12);}
+  //  @GetMapping("/searchID")
+  //  public @ResponseBody Optional<Film2> getSearch(){return filmRepository.findById(12);}
 
     @GetMapping("/allActors")
     public @ResponseBody Iterable<Actor> getAllActors() {return actorRepository.findAll();}

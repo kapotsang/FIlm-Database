@@ -1,4 +1,4 @@
-/*package com.kptsang.movieproject;
+package com.kptsang.movieproject;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -6,34 +6,39 @@ import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import java.util.Optional;
 
 @SpringBootTest
-public class MyStepdefs {
+public class StepDefsSearchFilm {
     @Autowired
     private FilmRepository testFilmRepository;
+    String expectedTitle;
 
-    Film2 testFilmShining = new Film2("The Shining", 1);
-    private String shiningAnswer;
-    Film2 testFilmDino = new Film2("ACADEMY DINOSAUR", 1);
+    Film2 testFilmDino;
 
 
     @Given("ACADEMY DINOSAUR is in the database")
-    public void dinoInDB(){ testFilmRepository.save(testFilmDino);  //get title
+    public void dinoInDB() {
+      testFilmDino=  new Film2("ACADEMY DINOSAUR", 1);
+        testFilmRepository.save(testFilmDino);
     }
 
     @When("I search for ACADEMY DINOSAUR")
-    public void searchForDino() { testFilmDino.getTitle();     //search by title
+    public void searchForDino() {
+        expectedTitle = testFilmDino.getTitle();
     }
 
 
-*/
-/*
     @Then("I should be told ACADEMY DINOSAUR is available")
-    public void shouldBeToldShiningAvailable(String expectedAnswerDino ){   //confirmation
-        assertEquals();
+    public void shouldBeToldDinoAvailable(){
+        Optional <Film2> testFilmDino = testFilmRepository.findById(1);
+        Film2 AddedFilm = testFilmDino.get();
+        assertEquals(AddedFilm.getTitle(), expectedTitle);
+    }
     }
 
+
+/*
     // @Given("The Shining is not in the database")
     // public void shiningInDB(){testFilmRepository.save(testFilmShining);
     // }

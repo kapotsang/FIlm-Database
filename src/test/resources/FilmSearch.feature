@@ -8,7 +8,7 @@ Feature: Film Title Search
   #  Scenario: I want to look up The Shining
   #    Given The Shining is not in the database
   #    When I search for The Shining
-  #    Then I should be told The Shining is not available
+  #    Then I should be told "The Shining" is not available
 
 
 

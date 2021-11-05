@@ -1,37 +1,52 @@
-package com.kptsang.movieproject;
+/*package com.kptsang.movieproject;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import com.kptsang.movieproject.*;
+import org.springframework.boot.test.context.SpringBootTest;
 
 
-
+@SpringBootTest
 public class MyStepdefs {
     @Autowired
     private FilmRepository testFilmRepository;
 
     Film2 testFilmShining = new Film2("The Shining", 1);
+    private String shiningAnswer;
+    Film2 testFilmDino = new Film2("ACADEMY DINOSAUR", 1);
 
 
-    @Given("The Shining is in the database")
-    public void shiningInLibrary(){ testFilmRepository.save(testFilmShining);
-    }
-    @Given("The Shooping is not in the database")
-
-
-    @When("I search for The Shining")
-    public void searchForTheShining() { testFilmShining.getTitle();
-        //locate title to confirm presence
-
+    @Given("ACADEMY DINOSAUR is in the database")
+    public void dinoInDB(){ testFilmRepository.save(testFilmDino);  //get title
     }
 
-    @Then("I should be told The Shining is available")
-    public void shouldBeToldShiningAvailable() {
+    @When("I search for ACADEMY DINOSAUR")
+    public void searchForDino() { testFilmDino.getTitle();     //search by title
+    }
+
+
+*/
+/*
+    @Then("I should be told ACADEMY DINOSAUR is available")
+    public void shouldBeToldShiningAvailable(String expectedAnswerDino ){   //confirmation
+        assertEquals();
+    }
+
+    // @Given("The Shining is not in the database")
+    // public void shiningInDB(){testFilmRepository.save(testFilmShining);
+    // }
+    //   @When("I search for The Shining")
+    //   public void searchForShining(){testFilmShining.getTitle();
+    //  }
+
+    //   @Then("I should be told The Shining is not available")
+  //  public void shouldBeToldShiningNotAvailable(String expectedAnswer){
+
+    }
         //confirmation of title in database
-    }
+
 
 
 
@@ -64,4 +79,3 @@ public class MyStepdefs {
   public void iShouldBeToldDog(String expectedAnswer) {assertEquals(expectedAnswer, actualTitle);}
 
 */
-}

@@ -11,7 +11,7 @@
 	<groupId>com.kptsang</groupId>
 	<artifactId>movieproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>movieproject</name>
 	<description>movie database project</description>
 

@@ -217,7 +217,7 @@
 
 			</plugin>
 		</plugins>
-		<finalName>JPA.MySQL</finalName>
+		<finalName>FilmDatabase</finalName>
 	</build>
 
 </project>

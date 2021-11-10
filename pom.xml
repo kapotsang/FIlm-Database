@@ -217,6 +217,7 @@
 
 			</plugin>
 		</plugins>
+		<finalName>JPA.MySQL</finalName>
 	</build>
 
 </project>

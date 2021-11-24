@@ -25,8 +25,8 @@ public class MovieprojectApplication {
         return filmRepository.findAll();
     }
 
-    @GetMapping("/searchID")
-    public @ResponseBody Optional<Film2> getSearch(){return filmRepository.findById(12);}
+  //  @GetMapping("/searchID")
+   // public @ResponseBody Optional<Film2> getSearch(){return filmRepository.findById(12);}
 
     @GetMapping("/allActors")
     public @ResponseBody Iterable<Actor> getAllActors() {return actorRepository.findAll();}
@@ -40,6 +40,7 @@ public class MovieprojectApplication {
         return searchFilm;
     }
     @PostMapping("/newFilm")
+    @CrossOrigin(origins = "http://localhost:3000")
     public @ResponseBody String newFilm ( @RequestParam String title, @RequestParam int language_id) {
         Film2 savedFilm = new Film2( title, language_id);
         filmRepository.save(savedFilm);

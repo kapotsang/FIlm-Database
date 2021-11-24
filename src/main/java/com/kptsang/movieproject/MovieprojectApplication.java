@@ -39,7 +39,7 @@ public class MovieprojectApplication {
         Film2 searchFilm = filmRepository.findById(film_id).orElse(null);
         return searchFilm;
     }
-
+//test
     @PostMapping("/newFilm")
     @CrossOrigin(origins = "http://localhost:3000")
     public @ResponseBody String newFilm ( @RequestParam String title, @RequestParam int language_id) {

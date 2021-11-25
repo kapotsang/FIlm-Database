@@ -3,11 +3,15 @@ package com.kptsang.movieproject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @SpringBootApplication
 @RestController //@RequestMapping ("/all")
+@CrossOrigin(origins = "http://localhost:3000")
 public class MovieprojectApplication {
 
 
@@ -39,14 +43,20 @@ public class MovieprojectApplication {
         Film2 searchFilm = filmRepository.findById(film_id).orElse(null);
         return searchFilm;
     }
-//ne
-    @PostMapping("/newFilm")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public @ResponseBody String newFilm ( @RequestParam String title, @RequestParam int language_id) {
-        Film2 savedFilm = new Film2( title, language_id);
+    @PostMapping(path="/newFilm", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Film2> addAFilm(@RequestBody Film2 newFilm){
+        Film2 savedFilm = new Film2 (newFilm.getTitle(), newFilm.getLanguage_id());
         filmRepository.save(savedFilm);
-        return "Saved Film";
+        return new ResponseEntity<Film2>(savedFilm, HttpStatus.OK);
     }
+
+//
+//    @PostMapping("/newFilm")
+//    public @ResponseBody String newFilm ( @RequestParam String title, @RequestParam int language_id) {
+//        Film2 savedFilm = new Film2( title, language_id);
+//        filmRepository.save(savedFilm);
+//        return "Saved Film";
+//    }
 
     @DeleteMapping("/deleteFilm{film_id}")
     public String deleteFilm(@PathVariable ("film_id")int film_id){
